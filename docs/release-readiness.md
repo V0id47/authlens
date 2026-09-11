@@ -17,7 +17,7 @@ Checked 2026-09-11 on Windows 11, Python 3.12.14. This is a local release-candid
 | Cross-platform CI | PENDING | Workflows cover Ubuntu/Windows/macOS and Python 3.11–3.14; no hosted run exists | Crear repo y ejecutar matriz completa | Sí |
 | Secret scan | PENDING | CI pins Gitleaks v8.30.1 and verifies checksum; local binary download was blocked by session approval limit | Ejecutar Gitleaks sobre working tree e historia | Sí |
 | Translation review | PENDING | Keys/placeholders/encoding technically checked; native-speaker review not claimed | Revisar copy con hablantes nativos | Sí para claim de traducción validada |
-| Git repository / release | PENDING | Local Git repository initialized at `main` with commit `1c9a93b`; no remote, tag or release exists | Add the reviewed remote, enable protections, then tag and publish only with authorization | Sí |
+| Git repository / release | PENDING | Local Git repository initialized at `main` with a reviewed commit; no remote, tag or release exists | Add the reviewed remote, enable protections, then tag and publish only with authorization | Sí |
 
 ## Decision
 

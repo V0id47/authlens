@@ -7,7 +7,7 @@ Audit date: 2026-09-11. Scope: AuthLens v0.1.0 local release candidate. This aud
 - **LOCAL EVIDENCE:** Windows 11/Python 3.12.14 validation, local package inventories, local scans, local benchmark and the reviewed Git commit.
 - **REMOTE CI EVIDENCE:** None. The workflows are prepared but no hosted runner has executed them.
 - **SECURITY SCAN EVIDENCE:** Bandit and the recorded authorized pip-audit run passed; Gitleaks remains pending because the local binary could not be obtained in this session.
-- **RELEASE EVIDENCE:** Local `main` commit `1c9a93b` exists; no remote, tag or GitHub Release exists. A separate clean checkout was built and its wheel was installed and exercised locally.
+- **RELEASE EVIDENCE:** A reviewed local `main` commit exists; no remote, tag or GitHub Release exists. A separate clean checkout was built and its wheel was installed and exercised locally.
 
 ## Tests
 
@@ -86,7 +86,7 @@ PASS WITH LIMITATION. `evaluation/events.jsonl` and `evaluation/labels.json` con
 
 ## Repository readiness
 
-PENDING. A local Git repository now exists at the AuthLens project root, on `main`, with reviewed commit `1c9a93b`. No remote was initialized or contacted. Before the first push, follow [release-checklist.md](release-checklist.md), inspect the complete working tree, run Gitleaks, remove local artifacts, configure branch protection/CI and then record the resulting remote evidence. Do not add public badges before a successful workflow run.
+PENDING. A local Git repository now exists at the AuthLens project root, on `main`, with a reviewed commit. No remote was initialized or contacted. Before the first push, follow [release-checklist.md](release-checklist.md), inspect the complete working tree, run Gitleaks, remove local artifacts, configure branch protection/CI and then record the resulting remote evidence. Do not add public badges before a successful workflow run.
 
 ## Remaining blockers
 
