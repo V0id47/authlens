@@ -1,0 +1,15 @@
+name: Feature proposal
+description: Describe a concrete investigation problem and its validation.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Who needs this, what problem does it solve, and what information should it deliver?
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Tests, false positives, failure modes and documentation
+    validations:
+      required: true

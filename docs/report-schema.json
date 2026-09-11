@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AuthLens report schema 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "tool",
+    "version",
+    "generated_at",
+    "language",
+    "notice",
+    "input",
+    "diagnostics",
+    "settings",
+    "findings"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "tool": {
+      "const": "AuthLens"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "language": {
+      "enum": [
+        "en",
+        "es",
+        "ru",
+        "zh-CN"
+      ]
+    },
+    "notice": {
+      "type": "string"
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sha256",
+        "bytes",
+        "lines",
+        "accepted",
+        "ignored",
+        "malformed",
+        "excluded",
+        "duplicates",
+        "analyzed",
+        "complete"
+      ],
+      "properties": {
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lines": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "ignored": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "malformed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "analyzed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "complete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "line",
+          "code"
+        ],
+        "properties": {
+          "line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "settings": {
+      "type": "object"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "rule_id",
+          "rule_version",
+          "severity",
+          "confidence",
+          "evidence_type",
+          "classification",
+          "start",
+          "end",
+          "host",
+          "service",
+          "source_ip",
+          "username",
+          "event_count",
+          "account_count",
+          "evidence",
+          "evidence_truncated",
+          "title",
+          "observation",
+          "inference",
+          "hypothesis",
+          "recommendation",
+          "false_positive",
+          "references",
+          "parameters"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{24}$"
+          },
+          "rule_id": {
+            "enum": [
+              "AL-001",
+              "AL-002",
+              "AL-003"
+            ]
+          },
+          "rule_version": {
+            "const": "1"
+          },
+          "severity": {
+            "enum": [
+              "INFO",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "evidence_type": {
+            "const": "DERIVED"
+          },
+          "classification": {
+            "const": "indicator"
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "host": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "source_ip": {
+            "type": "string"
+          },
+          "username": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "event_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "account_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "evidence": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "timestamp",
+                "host",
+                "service",
+                "username",
+                "source_ip",
+                "outcome",
+                "line",
+                "event_id"
+              ],
+              "properties": {
+                "timestamp": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "host": {
+                  "type": "string"
+                },
+                "service": {
+                  "type": "string"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "source_ip": {
+                  "type": "string"
+                },
+                "outcome": {
+                  "enum": [
+                    "failure",
+                    "success"
+                  ]
+                },
+                "line": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "event_id": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "evidence_truncated": {
+            "type": "boolean"
+          },
+          "title": {
+            "type": "string"
+          },
+          "observation": {
+            "type": "string"
+          },
+          "inference": {
+            "type": "string"
+          },
+          "hypothesis": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          },
+          "false_positive": {
+            "type": "string"
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "window_seconds",
+              "threshold"
+            ],
+            "properties": {
+              "window_seconds": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "threshold": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "purpose": "controlled behavioral evaluation, not real-world accuracy",
+  "default_settings": {"window_seconds": 300, "burst_threshold": 5, "spray_threshold": 5, "success_threshold": 5},
+  "scenarios": [
+    {"host": "eval-normal", "expected_rules": [], "context": "benign success only", "rationale": "no failure threshold"},
+    {"host": "eval-boundary-in", "expected_rules": ["AL-001"], "context": "boundary positive", "rationale": "fifth failure is exactly 300 seconds after the first"},
+    {"host": "eval-boundary-out", "expected_rules": [], "context": "boundary negative", "rationale": "fifth failure is one second outside the inclusive window"},
+    {"host": "eval-spray", "expected_rules": ["AL-002"], "context": "multi-account pattern", "rationale": "five distinct failed usernames share one source"},
+    {"host": "eval-four-users", "expected_rules": [], "context": "breadth negative", "rationale": "four accounts do not reach the threshold"},
+    {"host": "eval-success", "expected_rules": ["AL-001", "AL-003"], "context": "success after failures", "rationale": "same account/source has five failures then success"},
+    {"host": "eval-success-before", "expected_rules": ["AL-001"], "context": "legitimate-looking recovery ordering", "rationale": "success precedes failures, so AL-003 cannot match"},
+    {"host": "eval-different-host", "expected_rules": [], "context": "host separation", "rationale": "failures are split across distinct hosts"},
+    {"host": "eval-different-service", "expected_rules": [], "context": "service separation", "rationale": "only two failures in one service"},
+    {"host": "eval-duplicate", "expected_rules": [], "context": "default deduplication", "rationale": "five identical normalized events retain one analyzed event"}
+  ]
+}

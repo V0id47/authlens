@@ -1,0 +1,13 @@
+language = "es"
+input_format = "jsonl"
+window_seconds = 300
+burst_threshold = 5
+spray_threshold = 5
+success_threshold = 5
+max_bytes = 16777216
+max_line_bytes = 16384
+max_events = 50000
+exclude_cidr = []
+exclude_user = []
+keep_duplicates = false
+strict = false

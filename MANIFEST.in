@@ -1,0 +1,9 @@
+include README*.md LICENSE CHANGELOG.md SECURITY.md THREAT_MODEL.md CONTRIBUTING.md CODE_OF_CONDUCT.md
+include requirements-dev.txt .gitleaks.toml
+recursive-include docs *.md *.json
+recursive-include examples *.json *.jsonl *.log *.toml
+recursive-include evaluation *.json *.jsonl *.py *.md
+recursive-include scripts *.py
+recursive-include tests *.py
+recursive-include src/authlens/locales *.json
+global-exclude __pycache__ *.py[cod]

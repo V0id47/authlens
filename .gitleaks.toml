@@ -1,0 +1,7 @@
+title = "AuthLens development artifact exclusions"
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated local environments, caches and build products only"
+paths = ['''(^|[/\\])(\.venv|\.smoke-venv|\.uv-cache|\.audit-cache|\.pytest_cache|\.ruff_cache|\.git|build|dist|reports|__pycache__|htmlcov)([/\\]|$)''']

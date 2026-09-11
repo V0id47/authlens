@@ -1,0 +1,20 @@
+[
+  {
+    "rule_id": "AL-001",
+    "severity": "MEDIUM",
+    "event_count": 5,
+    "account_count": 1
+  },
+  {
+    "rule_id": "AL-003",
+    "severity": "HIGH",
+    "event_count": 6,
+    "account_count": 1
+  },
+  {
+    "rule_id": "AL-002",
+    "severity": "MEDIUM",
+    "event_count": 5,
+    "account_count": 5
+  }
+]
