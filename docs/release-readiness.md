@@ -17,11 +17,11 @@ Checked 2026-09-11 on Windows 11, Python 3.12.14. This is a local release-candid
 | Cross-platform CI | PENDING | Workflows cover Ubuntu/Windows/macOS and Python 3.11–3.14; no hosted run exists | Crear repo y ejecutar matriz completa | Sí |
 | Secret scan | PENDING | CI pins Gitleaks v8.30.1 and verifies checksum; local binary download was blocked by session approval limit | Ejecutar Gitleaks sobre working tree e historia | Sí |
 | Translation review | PENDING | Keys/placeholders/encoding technically checked; native-speaker review not claimed | Revisar copy con hablantes nativos | Sí para claim de traducción validada |
-| Git repository / release | PENDING | Workspace is not a Git repository; no remote operations performed | Inicializar repo separado, revisar, taggear y publicar solo con autorización | Sí |
+| Git repository / release | PENDING | Local Git repository initialized at `main` with commit `aba65b6`; no remote, tag or release exists | Add the reviewed remote, enable protections, then tag and publish only with authorization | Sí |
 
 ## Decision
 
-Do not label AuthLens `Portfolio Ready` until the pending gates that matter for the intended audience are closed or deliberately documented: remote CI run on target platforms, a secret scan, review of translated copy, a representative non-synthetic evaluation and repository/release provenance. The implementation is suitable for study and local demonstration now. No remote publication or external communication was performed.
+Do not label AuthLens `Portfolio Ready` until the pending gates that matter for the intended audience are closed or deliberately documented: remote CI run on target platforms, a Gitleaks secret scan, review of translated copy, a representative non-synthetic evaluation and repository/release provenance. The implementation is suitable for study and local demonstration now. No remote publication or external communication was performed.
 
 ## Reproduction record
 
