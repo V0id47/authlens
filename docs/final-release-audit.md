@@ -7,7 +7,7 @@ Audit date: 2026-09-11. Scope: AuthLens v0.1.0 local release candidate. This aud
 - **LOCAL EVIDENCE:** Windows 11/Python 3.12.14 validation, local package inventories, local scans, local benchmark and the reviewed Git commit.
 - **REMOTE CI EVIDENCE:** None. The workflows are prepared but no hosted runner has executed them.
 - **SECURITY SCAN EVIDENCE:** Bandit and the recorded authorized pip-audit run passed; Gitleaks remains pending because the local binary could not be obtained in this session.
-- **RELEASE EVIDENCE:** Local `main` commit exists; no remote, tag, GitHub Release or downloaded-release verification exists.
+- **RELEASE EVIDENCE:** Local `main` commit `1c9a93b` exists; no remote, tag or GitHub Release exists. A separate clean checkout was built and its wheel was installed and exercised locally.
 
 ## Tests
 
@@ -43,7 +43,7 @@ PASS at audit time. An authorized run of `pip-audit -r requirements-dev.txt` rep
 
 ## Build
 
-PASS locally. `python -m build --no-isolation` produced `dist/authlens-0.1.0-py3-none-any.whl` and `dist/authlens-0.1.0.tar.gz`. The sdist includes source, docs, examples and tests by design; local caches are excluded.
+PASS locally. `python -m build --no-isolation` produced `dist/authlens-0.1.0-py3-none-any.whl` and `dist/authlens-0.1.0.tar.gz`, and the same build completed from a clean checkout of the reviewed commit. The sdist includes source, docs, examples and tests by design; local caches are excluded.
 
 ```powershell
 .venv\Scripts\python.exe -m build --no-isolation
@@ -51,7 +51,12 @@ PASS locally. `python -m build --no-isolation` produced `dist/authlens-0.1.0-py3
 
 ## Packaging
 
-PASS locally. The wheel inventory contains the `authlens` package, four locale JSON catalogs, entry point metadata and the MIT license. A fresh `.smoke-venv` installed the wheel with `--no-index --no-deps`, and `python -m authlens analyze examples/events.jsonl --lang zh-CN --format json` loaded the package catalogs and produced three findings. The JSON schema is shipped in the source distribution/docs and used by the evaluation tests; runtime reporting does not read it from disk.
+PASS locally. The wheel inventory contains the `authlens` package, four locale JSON catalogs, entry point metadata and the MIT license. A wheel built from a separate clean checkout installed into `.smoke-venv` with `--no-index --no-deps`; help, SSH JSON, JSONL JSON and Spanish HTML smoke runs passed. The local release-candidate hashes are:
+
+- wheel: `99CD9A9B3F3C8B3D00DF85679351E62429EFFACAA739262AC5D6A2F284DB5B98`
+- sdist: `96268AE8CD3F98842B3EAA3A0C1A3E0503BE0F0BA23FB3784D0424AF3933BA6F`
+
+The JSON schema is shipped in the source distribution/docs and used by the evaluation tests; runtime reporting does not read it from disk.
 
 ## Security
 
@@ -81,7 +86,7 @@ PASS WITH LIMITATION. `evaluation/events.jsonl` and `evaluation/labels.json` con
 
 ## Repository readiness
 
-PENDING. A local Git repository now exists at the AuthLens project root, on `main`, with reviewed commit `aba65b6`. No remote was initialized or contacted. Before the first push, follow [release-checklist.md](release-checklist.md), inspect the complete working tree, run Gitleaks, remove local artifacts, configure branch protection/CI and then record the resulting remote evidence. Do not add public badges before a successful workflow run.
+PENDING. A local Git repository now exists at the AuthLens project root, on `main`, with reviewed commit `1c9a93b`. No remote was initialized or contacted. Before the first push, follow [release-checklist.md](release-checklist.md), inspect the complete working tree, run Gitleaks, remove local artifacts, configure branch protection/CI and then record the resulting remote evidence. Do not add public badges before a successful workflow run.
 
 ## Remaining blockers
 
