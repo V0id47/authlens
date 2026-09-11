@@ -51,10 +51,7 @@ PASS locally. `python -m build --no-isolation` produced `dist/authlens-0.1.0-py3
 
 ## Packaging
 
-PASS locally. The wheel inventory contains the `authlens` package, four locale JSON catalogs, entry point metadata and the MIT license. A wheel built from a separate clean checkout installed into `.smoke-venv` with `--no-index --no-deps`; help, SSH JSON, JSONL JSON and Spanish HTML smoke runs passed. The local release-candidate hashes are:
-
-- wheel: `99CD9A9B3F3C8B3D00DF85679351E62429EFFACAA739262AC5D6A2F284DB5B98`
-- sdist: `96268AE8CD3F98842B3EAA3A0C1A3E0503BE0F0BA23FB3784D0424AF3933BA6F`
+PASS locally. The wheel inventory contains the `authlens` package, four locale JSON catalogs, entry point metadata and the MIT license. A wheel built from a separate clean checkout installed into `.smoke-venv` with `--no-index --no-deps`; help, SSH JSON, JSONL JSON and Spanish HTML smoke runs passed. Compute and publish SHA-256 values from the final release files; no GitHub artifact exists yet.
 
 The JSON schema is shipped in the source distribution/docs and used by the evaluation tests; runtime reporting does not read it from disk.
 
