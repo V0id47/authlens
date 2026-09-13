@@ -16,7 +16,7 @@ Python 3.11+, runtime standard library only; locales en/es/ru/zh-CN; offline reg
 | 5 CLI | cli.py, __main__.py, tests/e2e | Entrypoint and flags work; stdout parseable; distinct codes; exclusive output/log create and correct diagnostic stream |
 | 6 i18n | locales/*.json, translated READMEs | Help, errors and narratives localized; keys/placeholders match; language precedence and fallback tested |
 | 7 Testing | tests/unit, integration, regression, e2e | Whole suite passes; >80% coverage goal assessed; wheel fresh-install demo and malformed-input scenarios run |
-| 8 Hardening | THREAT_MODEL, SECURITY, security CI | No raw secrets in logs/reports; bounded memory/input; injection regressions; static and dependency checks run or explicitly pending |
+| 8 Hardening | THREAT_MODEL, SECURITY, security CI | No raw secrets in logs/reports; bounded memory/input; injection regressions; static and dependency checks have recorded outcomes |
 | 9 Documentation | README ×4, docs/, examples/ | Actual runnable commands, sample output, limitations, severity rationale, contribution instructions and honest portfolio statement |
 | 10 Release | workflows, changelog, license, build artifacts, release-readiness.md | Local distributions built and installed; remote CI/publication status explicitly recorded; no premature Portfolio Ready label |
 

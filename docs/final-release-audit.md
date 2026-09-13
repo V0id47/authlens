@@ -1,13 +1,13 @@
 # FINAL RELEASE AUDIT
 
-Audit date: 2026-09-13. Scope: AuthLens v0.1.0 public release candidate at <https://github.com/V0id47/authlens>. Evidence for a source checkout, a hosted workflow and a published release is recorded separately.
+Audit date: 2026-09-13. Scope: the published [AuthLens v0.1.0](https://github.com/V0id47/authlens/releases/tag/v0.1.0). Evidence for the source checkout, hosted workflows and downloaded release artifacts is recorded separately.
 
 ## Evidence separation
 
 - **LOCAL EVIDENCE:** Windows 11/Python 3.12.14 validation, package inspection, clean-checkout build and wheel smoke, controlled evaluation, benchmark, Bandit, pip-audit 2.10.1 and Gitleaks 8.30.1.
-- **REMOTE CI EVIDENCE:** Commit `708439b5429c0f01c33c396dc66671df62965316`; [Lint 34742191573](https://github.com/V0id47/authlens/actions/runs/34742191573), [Test 34742191586](https://github.com/V0id47/authlens/actions/runs/34742191586) and [Security 34742191578](https://github.com/V0id47/authlens/actions/runs/34742191578) completed successfully.
-- **SECURITY SCAN EVIDENCE:** Bandit and pip-audit passed locally and remotely. Gitleaks scanned the local tree, the five-commit history, the hosted tree and the full fetched Git history with no undisclosed findings.
-- **RELEASE EVIDENCE:** The public repository and green pre-release CI exist. The `v0.1.0` tag, tag-triggered artifact build, GitHub Release and downloaded-artifact smoke test remain pending at this audit point.
+- **REMOTE CI EVIDENCE:** Release commit `3f6c20cf7748cba8161443756d02cda1113bbd07`; [Lint 34742989421](https://github.com/V0id47/authlens/actions/runs/34742989421), [Test 34742989444](https://github.com/V0id47/authlens/actions/runs/34742989444), [Security 34742989428](https://github.com/V0id47/authlens/actions/runs/34742989428) and [tag build 34743002957](https://github.com/V0id47/authlens/actions/runs/34743002957) completed successfully.
+- **SECURITY SCAN EVIDENCE:** Bandit and pip-audit passed locally and remotely. Gitleaks scanned the local tree, the complete local history, the hosted tree and the full fetched Git history with no undisclosed findings.
+- **RELEASE EVIDENCE:** `v0.1.0` points to `3f6c20c`; the GitHub Release includes the wheel, sdist and `SHA256SUMS`. Files downloaded from the public Release matched the checksums and the wheel passed a fresh no-index installation plus CLI/demo smoke checks.
 
 ## Tests and coverage
 
@@ -19,7 +19,7 @@ PASS. Ruff check and format check cover `src`, `tests`, `scripts` and `evaluatio
 
 ## Build and packaging
 
-PASS locally and in hosted CI. A separate clean checkout produced `authlens-0.1.0-py3-none-any.whl` and `authlens-0.1.0.tar.gz`. The wheel contains the package, four locale catalogs, entry-point metadata and MIT license, and installed with `--no-index --no-deps` into a fresh environment. Help, SSH/JSONL JSON and non-English HTML smoke runs passed. Final published-file hashes remain release evidence and must be taken from the tag build files, not copied from an earlier candidate build.
+PASS locally, in hosted CI and after publication. The released wheel contains the package, four locale catalogs, entry-point metadata and MIT license, and installed with `--no-index --no-deps` into a fresh environment. Help, SSH/JSONL JSON and Spanish HTML smoke runs passed. Published hashes: wheel `f9f09050337034fac01b1f857f43cbb8d6ea99300ccd149ecafc23701078f42a`; sdist `e1475558dc2a266cc3fff133336eb185ef1fc8a77c898db8ab4a3787144d9024`.
 
 ## Security review
 
@@ -43,13 +43,13 @@ PASS. Workflow permissions are read-only, third-party actions are pinned to comm
 
 ## Repository readiness
 
-PASS. The exact Git root is the AuthLens directory, default branch is `main`, the repository is public at <https://github.com/V0id47/authlens>, and the cited commit has green lint, security and cross-platform test workflows. Public badges now point to those real workflows.
+PASS. The exact Git root is the AuthLens directory, default branch is `main`, the repository is public at <https://github.com/V0id47/authlens>, and the release commit has green lint, security, cross-platform test and tag-build workflows. Public badges point to the real workflows and latest Release. The protected `main` branch requires a pull request, Ruff, security audit and all 12 matrix checks; force pushes and deletion remain disabled while administrator bypass remains available for recovery. Private vulnerability reporting, dependency graph, Dependabot alerts/security updates, secret scanning and push protection are enabled. Ten relevant repository topics are published.
 
 ## Decision
 
 **PORTFOLIO READY WITH DISCLOSED LIMITATIONS.** The open limitations are synthetic evaluation only, no real-world precision/recall claim and no native-speaker editorial certification. They are stated in public documentation and block exaggerated claims, not factual portfolio publication.
 
-The version is not yet a completed GitHub Release at this audit point. Closure requires the `v0.1.0` tag, successful tag build, published release with wheel/sdist/checksums, and installation of the downloaded release wheel in a new environment.
+The v0.1.0 release is complete. Its remaining limitations are product-validation limits stated above, not missing publication or artifact-verification steps.
 
 ## Exact final validation commands
 

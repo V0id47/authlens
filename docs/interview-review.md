@@ -104,6 +104,6 @@ This guide is for understanding the implementation, not memorizing a sales pitch
 
 **What a strong answer should contain:** A real repository with protected CI across supported platforms, secret scan, native-speaker review, representative labeled data and a measured evaluation, operational ownership, privacy review, release signing/provenance and human response procedures. Even then, the output would be triage evidence requiring corroboration, not an autonomous containment decision.
 
-### What part must the portfolio owner personally verify?
+### Which checks demonstrate implementation understanding?
 
-**What a strong answer should contain:** Explain and alter a threshold safely, reproduce the inclusive boundary and closed-pipe regression, inspect an event ID back to its source line, explain a false positive, run the wheel smoke test and identify every pending release gate. The project is a learning artifact; claims of personal experience must come from the owner.
+**What a strong answer should contain:** Explain and alter a threshold safely, reproduce the inclusive boundary and closed-pipe regression, inspect an event ID back to its source line, explain a false positive, run the released-wheel smoke test and identify the remaining validation limits.

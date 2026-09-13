@@ -2,6 +2,7 @@
 
 [![Test](https://github.com/V0id47/authlens/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/V0id47/authlens/actions/workflows/test.yml)
 [![Security](https://github.com/V0id47/authlens/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/V0id47/authlens/actions/workflows/security.yml)
+[![Release](https://img.shields.io/github/v/release/V0id47/authlens?display_name=tag&sort=semver)](https://github.com/V0id47/authlens/releases/latest)
 [![Python 3.11–3.14](https://img.shields.io/badge/python-3.11%E2%80%933.14-3776AB?logo=python&logoColor=white)](pyproject.toml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 

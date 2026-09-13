@@ -1,28 +1,30 @@
 # Release readiness — AuthLens 0.1.0
 
-Checked 2026-09-13. Repository: <https://github.com/V0id47/authlens>. The evidence below distinguishes local checks, hosted CI and the still-separate GitHub Release publication step. It is not a production certification or a PyPI publication claim.
+Checked 2026-09-13. Repository: <https://github.com/V0id47/authlens>. Release: <https://github.com/V0id47/authlens/releases/tag/v0.1.0>. The evidence below distinguishes local checks, hosted CI and released-artifact verification. It is not a production certification or a PyPI publication claim.
 
 | Gate | Estado | Evidencia | Limitación o siguiente acción |
 |---|---|---|---|
 | Product scope and threat model | PASS | Product spec, ADRs, `THREAT_MODEL.md`, `SECURITY.md`; three bounded offline rules and explicit non-goals | Mantener el alcance congelado en v0.1.0 |
 | Local tests and coverage | PASS | Windows 11/Python 3.12.14: 91 passed, 1 skipped; 93.61% branch-aware coverage | El skip local requiere privilegio de symlink |
-| Hosted test matrix | PASS | [Test run 34742191586](https://github.com/V0id47/authlens/actions/runs/34742191586): 12/12 jobs on Ubuntu, Windows and macOS; Python 3.11–3.14 | Hosted CI is evidence for this commit, not production deployment |
+| Hosted test matrix | PASS | [Test run 34742989444](https://github.com/V0id47/authlens/actions/runs/34742989444): 12/12 jobs on Ubuntu, Windows and macOS; Python 3.11–3.14 | Hosted CI is evidence for this commit, not production deployment |
 | Symlink behavior | PASS | Ubuntu/Python 3.12 job collected and passed all 92 tests; no skip | Windows local skip remains documented |
-| Lint and formatting | PASS | Local Ruff checks and [Lint run 34742191573](https://github.com/V0id47/authlens/actions/runs/34742191573) | Re-run on each push |
+| Lint and formatting | PASS | Local Ruff checks and [Lint run 34742989421](https://github.com/V0id47/authlens/actions/runs/34742989421) | Re-run on each push |
 | Static security analysis | PASS | Bandit passed locally and in hosted security CI | Static analysis has normal coverage limits |
 | Dependency audit | PASS | pip-audit 2.10.1 found no known vulnerabilities locally and in CI on 2026-09-13 | Result depends on the advisory database at scan time |
-| Secret scan | PASS | Gitleaks 8.30.1: local working tree and five-commit history passed; [Security run 34742191578](https://github.com/V0id47/authlens/actions/runs/34742191578) passed tree and full-history scans with redaction | Three public locale keys have exact, file-scoped false-positive exceptions |
+| Secret scan | PASS | Gitleaks 8.30.1: local working tree and complete Git history passed; [Security run 34742989428](https://github.com/V0id47/authlens/actions/runs/34742989428) passed tree and full-history scans with redaction | Three public locale keys have exact, file-scoped false-positive exceptions |
 | Controlled labeled evaluation | PASS WITH LIMITATION | 10 synthetic scenarios; 5 TP, 25 TN, 0 FP, 0 FN; precision/recall/F1 = 1.0 on that corpus | No real-world accuracy claim |
-| Package build and wheel smoke | PASS | Clean-checkout wheel/sdist build, isolated no-index wheel install and CLI/demo smoke passed locally; hosted matrix also builds and smoke-installs wheels | Final release artifact hashes are recorded after the tag build |
+| Package build and wheel smoke | PASS | [Tag build 34743002957](https://github.com/V0id47/authlens/actions/runs/34743002957) passed; the published wheel installed with `--no-index --no-deps` in a fresh environment and passed help, SSH, JSONL and Spanish HTML smoke checks | Wheel SHA-256 `f9f09050337034fac01b1f857f43cbb8d6ea99300ccd149ecafc23701078f42a`; sdist SHA-256 `e1475558dc2a266cc3fff133336eb185ef1fc8a77c898db8ab4a3787144d9024` |
 | Locale catalogs | PASS WITH LIMITATION | en/es/ru/zh-CN JSON, keys, placeholders, UTF-8, CLI/report behavior, fallback and OS mapping are technically tested | Native-speaker editorial review not claimed |
-| Public repository | PASS | Public `main` at <https://github.com/V0id47/authlens>; commit `708439b5429c0f01c33c396dc66671df62965316` produced the cited green CI runs | Branch/ruleset settings are a separate repository-administration control |
-| GitHub Release | PENDING | `release.yml` is read-only and builds artifacts on `v*` tags | Create `v0.1.0`, verify its build, publish the release and install the downloaded wheel |
+| Public repository | PASS | Public `main` at <https://github.com/V0id47/authlens>; release commit `3f6c20cf7748cba8161443756d02cda1113bbd07` produced the cited green CI runs; ten relevant repository topics are published | Repository popularity or adoption is not claimed |
+| Repository administration | PASS | `main` requires a pull request plus Ruff, security audit and all 12 matrix jobs; force pushes and deletion remain disabled; administrators retain bypass access for recovery | Changes to the workflow job names require the protected checks to be updated |
+| Hosted security controls | PASS | Private vulnerability reporting, dependency graph, Dependabot alerts, security updates and grouped security updates are enabled; secret scanning and push protection remain enabled | Dependabot findings are time-bound to GitHub's advisory data |
+| GitHub Release | PASS | [AuthLens v0.1.0](https://github.com/V0id47/authlens/releases/tag/v0.1.0) points to `3f6c20c` and includes wheel, sdist and `SHA256SUMS`; all three were downloaded and verified | GitHub also supplies automatic source archives |
 
 ## Decision
 
 The public source repository is **PORTFOLIO READY WITH DISCLOSED LIMITATIONS**. The remaining limitations are a synthetic evaluation corpus, no real-world precision/recall claim, and no native-speaker editorial certification. They prevent stronger accuracy and translation-quality claims, but do not block a factual public portfolio presentation.
 
-The GitHub Release is still a separate gate. Do not describe v0.1.0 as released until the tag build, artifact checksums, published release and fresh install of the downloaded wheel have been verified.
+AuthLens v0.1.0 is publicly released. The tag build, published checksums and a fresh installation of the downloaded wheel were verified before this record was finalized.
 
 ## Reproduction record
 

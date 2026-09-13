@@ -6,6 +6,6 @@ Tests live in unit/integration/regression/e2e. The correlation oracle deliberate
 
 `python scripts/benchmark.py` measures a deterministic synthetic 10k-event end-to-end workload using wall clock and tracemalloc, outputs machine-readable metrics and does not promise an SLA. It creates data only in a temporary directory and cleans it up. Compare on the same machine/runtime and consider report serialization amplification.
 
-CI definitions cover lint/format, Python 3.11–3.14 on three OSes, wheel/source build and isolated-wheel smoke, Bandit, dependency and secret scans. A workflow file is not proof it passed. `release.yml` builds downloadable artifacts on a tag/manual run; it has no publish permission. A GitHub Release remains an explicit maintainer operation after all gates.
+CI definitions cover lint/format, Python 3.11–3.14 on three OSes, wheel/source build and isolated-wheel smoke, Bandit, dependency and secret scans. A workflow file is not proof it passed. `release.yml` builds downloadable artifacts on a tag/manual run and has no publish permission. The v0.1.0 GitHub Release was published separately after its tag build and checks completed.
 
-A portfolio owner should read each module, run tests, alter a rule safely and explain the tradeoffs before claiming personal mastery. See [portfolio.md](portfolio.md) for a factual description rather than invented experience.
+The [interview review](interview-review.md) connects each implementation area to concrete checks: module tracing, threshold changes, inclusive-window boundaries, source-line evidence and released-wheel smoke tests. [Portfolio notes](portfolio.md) summarize the resulting engineering lessons and documented limits.
