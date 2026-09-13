@@ -2,7 +2,7 @@
 
 ## What I built
 
-AuthLens is an offline authentication investigation CLI developed with AI assistance and publicly released on GitHub as v0.1.0. The implemented version includes bounded SSH/JSONL ingestion, a Python correlation engine, evidence provenance, five exporters, four language catalogs and automated tests. It is a portfolio security tool, not a deployed SOC product.
+AuthLens is an offline authentication investigation CLI publicly released on GitHub as v0.1.0. The implemented version includes bounded SSH/JSONL ingestion, a Python correlation engine, evidence provenance, five exporters, four language catalogs and automated tests. It is a portfolio security tool, not a deployed SOC product.
 
 ## Problem
 
