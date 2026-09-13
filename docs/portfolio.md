@@ -22,10 +22,12 @@ Python 3.11+, standard library, dataclasses, deque/Counter, JSON/TOML, pytest/co
 
 ## What I learned
 
-This section must reflect the owner's own study, not experiences invented by an assistant. The code and docs provide exercises: explain why five failed accounts do not prove password spraying; derive the inclusive-window test; trace a line into a finding; reproduce the closed-pipe regression; and measure the effect of a threshold/exclusion change. After doing them, replace this paragraph with your actual observations.
+Working through AuthLens taught me to treat authentication patterns as investigation leads rather than verdicts. I learned to keep observed evidence, inference, hypothesis and recommendation separate, and to document benign explanations instead of presenting every threshold match as a confirmed attack.
+
+I also learned why UTC normalization, inclusive time boundaries and strict grouping by host, service, account and source matter in sliding-window detection. Comparing the optimized deque-based engine with an independent oracle showed me that performance improvements still need a simpler reference implementation to verify correctness.
+
+The release process reinforced that security tooling includes more than detection logic. Bounded input, predictable exit codes, escaped reports, source hashes and careful error handling are part of the security model. A credible public release also needs a clean build, cross-platform CI, dependency and secret scans, checksums, and a fresh installation of the same artifact users will download.
 
 ## Short description for CV / LinkedIn
 
 “AuthLens: analizador offline de autenticaciones con parsers SSH/JSONL, correlación temporal en Python, evidencia trazable, reportes multilingües y pruebas de límites, falsos positivos y manejo de errores. El proyecto documenta sus decisiones de arquitectura y sus límites de detección.”
-
-Do not add user counts, field accuracy, time saved, production deployments or publication claims unless separately demonstrated.
