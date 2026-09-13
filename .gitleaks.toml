@@ -5,3 +5,13 @@ useDefault = true
 [[allowlists]]
 description = "Generated local environments, caches and build products only"
 paths = ['''(^|[/\\])(\.venv|\.smoke-venv|\.uv-cache|\.audit-cache|\.pytest_cache|\.ruff_cache|\.git|build|dist|reports|__pycache__|htmlcov)([/\\]|$)''']
+
+[[allowlists]]
+description = "Public AuthLens locale message keys misclassified by generic-api-key"
+regexTarget = "secret"
+paths = ['''^src/authlens/locales/en\.json$''']
+regexes = [
+  '''^AL-001\.recommendation$''',
+  '''^AL-002\.hypothesis$''',
+  '''^AL-003\.hypothesis$''',
+]
