@@ -1,108 +1,68 @@
 # FINAL RELEASE AUDIT
 
-Audit date: 2026-09-11. Scope: AuthLens v0.1.0 local release candidate. This audit uses the files in this directory, fresh local commands and recorded audit evidence. It does not treat a workflow definition as a successful remote run.
+Audit date: 2026-09-13. Scope: AuthLens v0.1.0 public release candidate at <https://github.com/V0id47/authlens>. Evidence for a source checkout, a hosted workflow and a published release is recorded separately.
 
 ## Evidence separation
 
-- **LOCAL EVIDENCE:** Windows 11/Python 3.12.14 validation, local package inventories, local scans, local benchmark and the reviewed Git commit.
-- **REMOTE CI EVIDENCE:** None. The workflows are prepared but no hosted runner has executed them.
-- **SECURITY SCAN EVIDENCE:** Bandit and the recorded authorized pip-audit run passed; Gitleaks remains pending because the local binary could not be obtained in this session.
-- **RELEASE EVIDENCE:** A reviewed local `main` commit exists; no remote, tag or GitHub Release exists. A separate clean checkout was built and its wheel was installed and exercised locally.
+- **LOCAL EVIDENCE:** Windows 11/Python 3.12.14 validation, package inspection, clean-checkout build and wheel smoke, controlled evaluation, benchmark, Bandit, pip-audit 2.10.1 and Gitleaks 8.30.1.
+- **REMOTE CI EVIDENCE:** Commit `708439b5429c0f01c33c396dc66671df62965316`; [Lint 34742191573](https://github.com/V0id47/authlens/actions/runs/34742191573), [Test 34742191586](https://github.com/V0id47/authlens/actions/runs/34742191586) and [Security 34742191578](https://github.com/V0id47/authlens/actions/runs/34742191578) completed successfully.
+- **SECURITY SCAN EVIDENCE:** Bandit and pip-audit passed locally and remotely. Gitleaks scanned the local tree, the five-commit history, the hosted tree and the full fetched Git history with no undisclosed findings.
+- **RELEASE EVIDENCE:** The public repository and green pre-release CI exist. The `v0.1.0` tag, tag-triggered artifact build, GitHub Release and downloaded-artifact smoke test remain pending at this audit point.
 
-## Tests
+## Tests and coverage
 
-PASS. The complete suite reports **91 passed, 1 skipped**. The skip is the Windows symlink fixture when the host cannot create symlinks; the test records that limitation. Unit, integration, regression, adversarial and subprocess e2e tests all run against real parser, detector, exporters and CLI boundaries.
+PASS. The complete local suite reports **91 passed, 1 skipped** with **93.61%** branch-aware coverage. The skip is the Windows symlink fixture when the host cannot create symlinks. Hosted CI completed **12/12** matrix jobs on Ubuntu, Windows and macOS with Python 3.11, 3.12, 3.13 and 3.14. The Ubuntu/Python 3.12 job collected and passed all **92** tests, confirming the symlink path without a skip. Each matrix job also built the distributions and installed the wheel into an isolated environment for CLI smoke checks.
 
-Command:
+## Static and dependency analysis
 
-```powershell
-.venv\Scripts\python.exe -m pytest --cov=authlens --cov-report=term-missing --cov-report=xml -q
-```
+PASS. Ruff check and format check cover `src`, `tests`, `scripts` and `evaluation`. Bandit covers `src`. pip-audit 2.10.1 reported no known vulnerabilities in `requirements-dev.txt` on 2026-09-13. The dependency result is time-bound to the advisory database; it is not a permanent guarantee.
 
-## Coverage
+## Build and packaging
 
-PASS. Branch-aware coverage is **93.61%**, above the configured 80% gate. Subprocess coverage is enabled in `pyproject.toml`. Coverage measures exercised implementation paths; it does not establish field precision, recall or safe autonomous response.
+PASS locally and in hosted CI. A separate clean checkout produced `authlens-0.1.0-py3-none-any.whl` and `authlens-0.1.0.tar.gz`. The wheel contains the package, four locale catalogs, entry-point metadata and MIT license, and installed with `--no-index --no-deps` into a fresh environment. Help, SSH/JSONL JSON and non-English HTML smoke runs passed. Final published-file hashes remain release evidence and must be taken from the tag build files, not copied from an earlier candidate build.
 
-## Static analysis
+## Security review
 
-PASS locally. Ruff check and format check over `src`, `tests`, `scripts` and `evaluation`, plus Bandit over `src`, completed without findings.
+PASS WITH DISCLOSED LIMITATIONS. Adversarial tests cover oversized values, malformed records, source mutation, symlink/non-regular input, exclusive outputs, failed finalization, closed stdout pipes, report injection, Unicode controls and raw-log minimization. The review fixed oversized SSH port conversion plus two pipe/failure-path issues.
 
-```powershell
-.venv\Scripts\python.exe -m ruff check src tests scripts evaluation
-.venv\Scripts\python.exe -m ruff format --check src tests scripts evaluation
-.venv\Scripts\python.exe -m bandit -r src -q
-```
+Gitleaks 8.30.1 found three false positives in public English locale keys. The allowlist accepts only `AL-001.recommendation`, `AL-002.hypothesis` and `AL-003.hypothesis`, only in `src/authlens/locales/en.json`, against the detected secret value. After that narrow exception, both local scans and both hosted scans reported no leaks. The workflow verifies the downloaded Gitleaks checksum, fetches full history, redacts findings and uses `permissions: contents: read`.
 
-## Dependency audit
+Residual security limits remain documented: AuthLens provides investigation indicators, preserves identities and IPs in reports, cannot authenticate log provenance, and does not guarantee a fixed memory ceiling or absence of attacks. It performs no networking, login attempt, blocking action or credential verification.
 
-PASS at audit time. An authorized run of `pip-audit -r requirements-dev.txt` reported no known vulnerabilities. A later sandbox rerun could not upgrade its temporary pip tooling because network access is restricted; that is an environment limitation, not a clean second scan. This result depends on the vulnerability database date and does not remove the need for future updates.
+## Documentation and locales
 
-```powershell
-.venv\Scripts\python.exe -m pip_audit -r requirements-dev.txt --cache-dir .audit-cache --progress-spinner off
-```
+PASS WITH LIMITATION. English, Spanish, Russian and Simplified Chinese READMEs and technical documentation are present. Relative links, locale JSON, UTF-8, matching keys/placeholders, CLI help/errors, reports, fallback and OS locale mapping are technically checked. Native-speaker editorial review has not occurred and is not claimed.
 
-## Build
+## Controlled evaluation
 
-PASS locally. `python -m build --no-isolation` produced `dist/authlens-0.1.0-py3-none-any.whl` and `dist/authlens-0.1.0.tar.gz`, and the same build completed from a clean checkout of the reviewed commit. The sdist includes source, docs, examples and tests by design; local caches are excluded.
+PASS WITH LIMITATION. The evaluator uses the real parser and detector against ten synthetic scenarios. Result: **5 TP, 25 TN, 0 FP, 0 FN; precision 1.0, recall 1.0, F1 1.0** at the rule/scenario level. Thresholds were not tuned to restore these metrics. This corpus is a regression contract, not representative field validation and not evidence of production accuracy.
 
-```powershell
-.venv\Scripts\python.exe -m build --no-isolation
-```
+## Workflow and supply-chain review
 
-## Packaging
-
-PASS locally. The wheel inventory contains the `authlens` package, four locale JSON catalogs, entry point metadata and the MIT license. A wheel built from a separate clean checkout installed into `.smoke-venv` with `--no-index --no-deps`; help, SSH JSON, JSONL JSON and Spanish HTML smoke runs passed. Compute and publish SHA-256 values from the final release files; no GitHub artifact exists yet.
-
-The JSON schema is shipped in the source distribution/docs and used by the evaluation tests; runtime reporting does not read it from disk.
-
-## Security
-
-PASS WITH LIMITATION. Adversarial tests cover oversized ports, malformed records, source mutation, symlink/non-regular input, exclusive outputs, failed finalization, closed stdout pipes, HTML/Markdown/CSV injection, Unicode controls and raw-log minimization. The independent review found and the implementation fixed two pipe/failure-path bugs plus oversized integer conversion. No network, authentication attempt, blocking action or dynamic loading exists.
-
-Gitleaks is **PENDING REMOTE CI**. `.github/workflows/security.yml` pins Gitleaks v8.30.1, verifies the published checksum, uses read-only workflow permissions and scans the complete working tree with redaction. A local binary download was blocked by the session approval limit; no local Gitleaks pass is claimed.
-
-## Documentation
-
-PASS WITH LIMITATION. English, Spanish, Russian and Simplified Chinese READMEs, product specification, architecture, configuration, detection logic, security model, troubleshooting, development, threat model, ADRs, contribution policy, changelog, portfolio statement, interview review, release checklist and this audit are present. Relative links were checked across the public documentation set. The technical i18n review confirms matching keys/placeholders and valid UTF-8/JSON. Native-speaker review remains pending.
-
-## Cross-platform
-
-PASS WITH LIMITATION. Workflows declare Ubuntu, Windows and macOS with Python 3.11–3.14 and cover lint, tests, coverage, build, wheel smoke install, Bandit, pip-audit and artifacts. No hosted runner has executed because this directory is not connected to a remote Git repository. Windows/Python 3.12 is the only local runtime evidence.
-
-## Translation
-
-PASS WITH LIMITATION. All four catalogs have identical keys and formatting placeholders; locale detection, fallback, CLI help/errors and report narratives are tested. Unicode catalog parsing passed. A native-speaker editorial review has not occurred and must not be claimed.
-
-## Representative dataset
-
-PASS WITH LIMITATION. `evaluation/events.jsonl` and `evaluation/labels.json` contain ten controlled scenarios: normal success, exact and outside boundaries, multi-account breadth, below-threshold breadth, success ordering, host/service separation and duplicate handling. The evaluator reports **5 TP, 25 TN, 0 FP, 0 FN; precision 1.0, recall 1.0, F1 1.0** at the behavioral rule/scenario level. This is a synthetic regression corpus, not a real-world validation set and not evidence of production accuracy. No tuning set was used; thresholds remain specified by the product design.
-
-```powershell
-.venv\Scripts\python.exe evaluation\evaluate.py
-```
+PASS. Workflow permissions are read-only, third-party actions are pinned to commit SHAs with readable version comments, no `pull_request_target` is used, and the release workflow cannot publish by itself. Gitleaks binaries are version-pinned and checksum-verified. Python, build tooling, development dependencies and GitHub Actions remain part of the supply chain even though the installed runtime has no third-party package dependencies.
 
 ## Repository readiness
 
-PENDING. A local Git repository now exists at the AuthLens project root, on `main`, with a reviewed commit. No remote was initialized or contacted. Before the first push, follow [release-checklist.md](release-checklist.md), inspect the complete working tree, run Gitleaks, remove local artifacts, configure branch protection/CI and then record the resulting remote evidence. Do not add public badges before a successful workflow run.
+PASS. The exact Git root is the AuthLens directory, default branch is `main`, the repository is public at <https://github.com/V0id47/authlens>, and the cited commit has green lint, security and cross-platform test workflows. Public badges now point to those real workflows.
 
-## Remaining blockers
+## Decision
 
-The correct decision is **NOT PORTFOLIO READY** because important external gates remain open: remote CI, remote/verified secret scanning, native-speaker translation review, representative non-synthetic evaluation, and GitHub repository/release provenance. The codebase is ready for personal study and a local demo. Do not start SentinelHTTP until these gates are consciously closed or the project is explicitly labeled a limited local portfolio artifact.
+**PORTFOLIO READY WITH DISCLOSED LIMITATIONS.** The open limitations are synthetic evaluation only, no real-world precision/recall claim and no native-speaker editorial certification. They are stated in public documentation and block exaggerated claims, not factual portfolio publication.
+
+The version is not yet a completed GitHub Release at this audit point. Closure requires the `v0.1.0` tag, successful tag build, published release with wheel/sdist/checksums, and installation of the downloaded release wheel in a new environment.
 
 ## Exact final validation commands
 
 ```powershell
-# Run the following from the AuthLens project root.
 .venv\Scripts\python.exe -m ruff check src tests scripts evaluation
 .venv\Scripts\python.exe -m ruff format --check src tests scripts evaluation
 .venv\Scripts\python.exe -m pytest --cov=authlens --cov-report=term-missing --cov-report=xml -q
 .venv\Scripts\python.exe -m bandit -r src -q
 .venv\Scripts\python.exe -m pip_audit -r requirements-dev.txt --cache-dir .audit-cache --progress-spinner off
+$gitleaks = Join-Path $env:TEMP 'authlens-gitleaks-8.30.1\bin\gitleaks.exe'
+& $gitleaks dir --redact --no-banner --config .gitleaks.toml .
+& $gitleaks git --redact --no-banner --config .gitleaks.toml .
 .venv\Scripts\python.exe -m build --no-isolation
-uv --cache-dir .uv-cache pip install --python .smoke-venv\Scripts\python.exe --no-index --no-deps --force-reinstall dist\authlens-0.1.0-py3-none-any.whl
-.smoke-venv\Scripts\python.exe -m authlens analyze examples\events.jsonl --lang zh-CN --format json
 .venv\Scripts\python.exe evaluation\evaluate.py
 .venv\Scripts\python.exe scripts\benchmark.py
 ```
-
-The first push checklist adds the Gitleaks command and a complete history scan after repository initialization. Keep all output artifacts private during validation.

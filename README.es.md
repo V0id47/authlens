@@ -4,7 +4,7 @@
 
 [English](README.md) · [Русский](README.ru.md) · [简体中文](README.zh-CN.md)
 
-Python 3.11+ · MIT · v0.1.0 · sin dependencias de runtime. Candidato de release local; [validaciones y pendientes](docs/release-readiness.md).
+Python 3.11+ · MIT · v0.1.0 · sin dependencias de runtime. **Portfolio ready con limitaciones documentadas**; la evaluación controlada sigue siendo sintética y no se afirma revisión editorial por hablantes nativos. [Evidencia de release](docs/release-readiness.md).
 
 ## Por qué existe
 
@@ -47,7 +47,7 @@ py -3 -m venv .venv
 .venv\Scripts\authlens.exe --help
 ```
 
-Sin activar el entorno, reemplazá `authlens` por `.venv\Scripts\authlens.exe`. La instalación puede descargar herramientas de build; la ejecución es offline. No se afirma publicación en PyPI. La verificación local fue en Windows/Python 3.12; CI pública en los demás sistemas sigue pendiente.
+Sin activar el entorno, reemplazá `authlens` por `.venv\Scripts\authlens.exe`. La instalación puede descargar herramientas de build; la ejecución es offline. No se afirma publicación en PyPI. GitHub Actions valida Ubuntu, Windows y macOS con Python 3.11–3.14; la verificación local de release también se realizó en Windows/Python 3.12.
 
 ## Inicio rápido
 
@@ -123,7 +123,7 @@ La suite incluye ventanas, Unicode, entradas hostiles, i18n, exportadores y CLI 
 
 ## Roadmap
 
-Cerrar validación de CI pública, release y datos representativos. Después evaluar episodios múltiples, nuevos adapters y pseudonimización; no son funciones implementadas. [Fases](docs/development-phases.md), [texto para portfolio](docs/portfolio.md).
+Trabajo futuro: validación con datos representativos, episodios múltiples, nuevos adapters y pseudonimización; no son funciones implementadas. [Fases](docs/development-phases.md), [texto para portfolio](docs/portfolio.md).
 
 ## Licencia
 

@@ -6,6 +6,6 @@ Before a feature, state its user/problem, delivered information, validation, fal
 
 Run lint, formatting, full tests/coverage, Bandit and build. Keep all four catalogs in sync; never translate stable keys/IDs. Update applicable READMEs and changelog. Document significant decisions as an ADR. Do not bump coverage by testing constants or mirroring the implementation.
 
-Use descriptive commits and PRs that explain the actual behavior change and how it was checked. Do not claim external deployments, customers, benchmarks or personal learning experiences that did not occur. AI assistance should be disclosed when describing this portfolio work; the learner should be able to explain and modify it.
+Use descriptive commits and PRs that explain the actual behavior change and how it was checked. Do not claim external deployments, customers, benchmarks or personal learning experiences that did not occur. A portfolio owner should be able to explain and modify the work they present.
 
 For security issues follow [SECURITY.md](SECURITY.md). For conduct issues privately contact the repository owner using an available platform channel; no response-time promise is made.

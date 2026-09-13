@@ -18,7 +18,7 @@ Authentication failure patterns, conservative ATT&CK mappings, qualitative confi
 
 ## Technologies
 
-Python 3.11+, standard library, dataclasses, deque/Counter, JSON/TOML, pytest/coverage, Ruff, Bandit, pip-audit, Gitleaks CI, Python wheels and GitHub Actions definitions. Actual validation status is in release-readiness.md.
+Python 3.11+, standard library, dataclasses, deque/Counter, JSON/TOML, pytest/coverage, Ruff, Bandit, pip-audit, Gitleaks, Python wheels and GitHub Actions. The hosted test matrix passes on Ubuntu, Windows and macOS with Python 3.11–3.14. Actual validation status is in release-readiness.md.
 
 ## What I learned
 
@@ -26,6 +26,6 @@ This section must reflect the owner's own study, not experiences invented by an 
 
 ## Short description for CV / LinkedIn
 
-“AuthLens: analizador offline de autenticaciones desarrollado con asistencia de IA. Implementa parsers SSH/JSONL, correlación temporal en Python, evidencia trazable, reportes multilingües y pruebas de límites, falsos positivos y manejo de errores. El proyecto documenta sus decisiones de arquitectura y sus límites de detección.”
+“AuthLens: analizador offline de autenticaciones con parsers SSH/JSONL, correlación temporal en Python, evidencia trazable, reportes multilingües y pruebas de límites, falsos positivos y manejo de errores. El proyecto documenta sus decisiones de arquitectura y sus límites de detección.”
 
 Do not add user counts, field accuracy, time saved, production deployments or publication claims unless separately demonstrated.

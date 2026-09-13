@@ -1,5 +1,10 @@
 # AuthLens
 
+[![Test](https://github.com/V0id47/authlens/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/V0id47/authlens/actions/workflows/test.yml)
+[![Security](https://github.com/V0id47/authlens/actions/workflows/security.yml/badge.svg?branch=main)](https://github.com/V0id47/authlens/actions/workflows/security.yml)
+[![Python 3.11–3.14](https://img.shields.io/badge/python-3.11%E2%80%933.14-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 **Offline authentication triage with evidence you can inspect.**
 
 [Español](README.es.md) · [Русский](README.ru.md) · [简体中文](README.zh-CN.md)
@@ -8,7 +13,7 @@ Python 3.11+ · MIT · v0.1.0 · no runtime dependencies
 
 AuthLens reads a local authentication export, correlates time windows, and produces explainable indicators with source hashes and line references. It makes no network connections and does not attempt logins or block accounts. **An indicator is a lead for investigation, not proof of compromise.**
 
-Status: local release candidate. See [verified results and remaining release gates](docs/release-readiness.md). Public CI badges will be added only after a real repository and workflow exist.
+Status: **portfolio ready with disclosed limitations**. Public CI validates the supported platform and Python matrix; the controlled evaluation remains synthetic and native-speaker editorial review is not claimed. See [release evidence](docs/release-readiness.md).
 
 ## Why this project exists
 
@@ -61,7 +66,7 @@ The detector is pure Python and independent of CLI/reporting. It uses deques and
 
 ## Installation
 
-Use a maintained Python 3.11–3.14 interpreter. The source is intended for Linux, Windows and macOS; local verification was performed on Windows/Python 3.12. Public cross-platform CI remains a separate gate.
+Use a maintained Python 3.11–3.14 interpreter. GitHub Actions validates the project on Ubuntu, Windows and macOS across Python 3.11–3.14; local release verification was also performed on Windows/Python 3.12.
 
 From this repository directory, on Linux/macOS:
 
@@ -159,7 +164,7 @@ Tests cover UTC boundaries, scope separation, an independent correlation oracle,
 
 ## Roadmap
 
-Close remote CI/release and representative-data validation gates first. Later candidates: multiple episode extraction, documented source adapters and pseudonymized reporting. These are not implemented features. See [development phases](docs/development-phases.md) and the [portfolio statement](docs/portfolio.md).
+Later candidates: representative-data validation, multiple episode extraction, documented source adapters and pseudonymized reporting. These are not implemented features. See [development phases](docs/development-phases.md) and the [portfolio statement](docs/portfolio.md).
 
 ## License
 

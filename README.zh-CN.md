@@ -4,7 +4,7 @@
 
 [English](README.md) · [Español](README.es.md) · [Русский](README.ru.md)
 
-Python 3.11+ · MIT · v0.1.0 · 无运行时第三方依赖。当前为本地候选版本；参见[验证结果与待完成事项](docs/release-readiness.md)。
+Python 3.11+ · MIT · v0.1.0 · 无运行时第三方依赖。**已达到作品集展示标准，但有明确限制**：受控评估仍为合成数据，且不声称经过母语者编辑审校。参见[发布证据](docs/release-readiness.md)。
 
 ## 为什么需要这个项目
 
@@ -47,7 +47,7 @@ py -3 -m venv .venv
 .venv\Scripts\authlens.exe --help
 ```
 
-未激活环境时，将 `authlens` 替换为 `.venv\Scripts\authlens.exe`。安装可能下载构建工具；运行完全离线。尚未宣称发布到 PyPI。本地验证环境为 Windows/Python 3.12；其他平台的公开 CI 仍需运行。
+未激活环境时，将 `authlens` 替换为 `.venv\Scripts\authlens.exe`。安装可能下载构建工具；运行完全离线。尚未宣称发布到 PyPI。GitHub Actions 已在 Ubuntu、Windows 和 macOS 上验证 Python 3.11–3.14；本地发布验证也在 Windows/Python 3.12 上完成。
 
 ## 快速开始
 
@@ -123,7 +123,7 @@ python scripts/benchmark.py
 
 ## 路线图
 
-先完成公开 CI、发布和代表性数据验证，再评估多事件窗口、新适配器及假名化报告。这些扩展目前尚未实现。参见[开发阶段](docs/development-phases.md)与[作品集说明](docs/portfolio.md)。
+后续工作包括代表性数据验证、多事件窗口、新适配器及假名化报告；这些功能目前尚未实现。参见[开发阶段](docs/development-phases.md)与[作品集说明](docs/portfolio.md)。
 
 ## 许可证
 
